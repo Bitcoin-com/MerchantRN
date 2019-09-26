@@ -3,6 +3,7 @@ import { TouchableHighlight, TextInput, Text, View } from "react-native"
 import AsyncStorage from '@react-native-community/async-storage';
 import { SvgUri } from 'react-native-svg';
 import styled from 'styled-components';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export interface Props {
   navigation: any
@@ -28,9 +29,9 @@ export default class Init extends React.Component<Props, State> {
     const { navigate } = this.props.navigation;
     const merchantID = await this.getMerchantID();
 
-    if (merchantID !== undefined) {
-      navigate('Invoice', {})
-    }
+    // if (merchantID !== undefined) {
+    //   navigate('Invoice', {})
+    // }
 
   }
 
@@ -96,7 +97,7 @@ export default class Init extends React.Component<Props, State> {
   handlePress = () => {
 
     const { id, isValid } = this.state
-    this.saveMerchantID(id)
+    this.validateID(id)
   }
 
 
@@ -110,8 +111,8 @@ export default class Init extends React.Component<Props, State> {
           Welcome to your Bitcoin Cash Register
         </HeaderText>
         <SvgUri
-          width="80%"
-          height="55%"
+          width={wp('80%')}
+          height={hp('45%')}
           uri="https://learnbitcoin.cash/crypto.svg"
         />
 
@@ -138,6 +139,7 @@ const HeaderText = styled.Text`
   font-size: 20px;
   font-weight: 500;
   color: #5551c9;
+  margin-top: ${hp('10%')};
 `;
 const LabelText = styled.Text`
   font-size: 28px;
@@ -152,18 +154,18 @@ const ButtonText = styled.Text`
 `;
 
 const MerchantInput = styled.TextInput`
-    border: 1px solid #eaeaea;
-    border-radius: 5px;
-    color: #5d5d5d;
-    width: 60%;
-    font-size: 18px;
-    padding: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  color: #5d5d5d;
+  width: ${wp('70%')};
+  font-size: 18px;
+  padding: 10px;
 `;
 
 const ProceedButton = styled.TouchableHighlight`
   background-color: #b0aed6;
   border-radius: 100px;
-  width: 230px;
-  margin: 15px auto;
+  width: ${wp('40%')};
+  margin-top:${hp('4%')};
   padding: 20px 0;
 `;
