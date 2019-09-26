@@ -112,7 +112,7 @@ export default class Init extends React.Component<Props, State> {
         <SvgUri
           width="80%"
           height="55%"
-          uri="https://svgshare.com/i/F5m.svg"
+          uri="https://learnbitcoin.cash/crypto.svg"
         />
 
         <LabelText >Enter merchant ID </LabelText>
