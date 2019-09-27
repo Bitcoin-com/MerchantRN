@@ -1,8 +1,16 @@
 import React from "react"
-import { Button, StyleSheet, Text, View } from "react-native"
+import { TouchableHighlight, TextInput, Text, View } from "react-native"
+import { AxiosResponse } from "axios";
 import AsyncStorage from '@react-native-community/async-storage';
+import { SvgUri } from 'react-native-svg';
+import styled from 'styled-components';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
+import BchInput from "../components/bch-input";
 
 export interface Props {
+  location: object;
+  history: any;
 }
 
 interface State {
@@ -17,8 +25,7 @@ interface State {
   isValid: boolean;
 }
 
-export default class HomeScreen extends React.Component<Props, State> {
-
+export default class InvoiceScreen extends React.Component<Props, State> {
   state: State = {
     id: "",
     errorMsg: "",
@@ -35,14 +42,6 @@ export default class HomeScreen extends React.Component<Props, State> {
     this.getMerchantInfo();
   };
 
-  getMerchantInfo = async () => {
-    const merchantInfo = await this.getMerchantID();
-
-
-    const resp = await this.mockApiCall(merchantInfo);
-    this.setState({ merchant: resp });
-  };
-
 
   getMerchantID = async () => {
     try {
@@ -54,6 +53,12 @@ export default class HomeScreen extends React.Component<Props, State> {
     }
   }
 
+  getMerchantInfo = async () => {
+    const merchantInfo = await this.getMerchantID();
+
+    const resp = await this.mockApiCall(merchantInfo);
+    this.setState({ merchant: resp });
+  };
 
   mockApiCall = async (apiKey: any) => {
     return {
@@ -63,16 +68,57 @@ export default class HomeScreen extends React.Component<Props, State> {
     };
   };
 
+  updateBip70Payload = (obj: object) => {
+    this.setState({ bip70Payload: obj });
+  };
 
-  render() {
+  markValid = () => {
+    this.setState({ isValid: true });
+  };
+  markInvalid = () => {
+    this.setState({ isValid: false });
+  };
+
+  submitPayload = async () => {
+    const { bip70Payload } = this.state;
+
+    const {
+      history: { push }
+    } = this.props;
+    const { data }: AxiosResponse = await axios.post(
+      `https://pay.bitcoin.com/create_invoice`,
+      bip70Payload
+    );
+
+    const { paymentId } = data;
+    //    push(`/i/${paymentId}`);
+  };
+
+  render(): JSX.Element {
+    const {
+      merchant: { companyName },
+      isValid,
+      bip70Payload
+    } = this.state;
+
     return (
-      <View>
-        <Text>
-          Invoice page
-        </Text>
+      <Container>
+        <View>
+          <BchInput
+            companyName={companyName}
+            markValid={this.markValid}
+            markInvalid={this.markInvalid}
+            updateBip70Payload={this.updateBip70Payload}
+          />
+        </View>
 
 
-      </View>
-    )
+      </Container>
+    );
   }
 }
+
+const Container = styled.View`
+  flex: 1;
+  background-color: #FBFCFF;
+`;

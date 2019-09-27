@@ -26,12 +26,12 @@ export default class Init extends React.Component<Props, State> {
   };
 
   componentDidMount = async () => {
-    const { navigate } = this.props.navigation;
     const merchantID = await this.getMerchantID();
+    const { navigate } = this.props.navigation;
 
-    // if (merchantID !== undefined) {
-    //   navigate('Invoice', {})
-    // }
+    if (merchantID !== undefined) {
+      navigate('Invoice', {})
+    }
 
   }
 
@@ -57,8 +57,10 @@ export default class Init extends React.Component<Props, State> {
   }
 
   saveMerchantID = async (merchantID: any) => {
+    const { navigate } = this.props.navigation;
     try {
-      await AsyncStorage.setItem('merchant', merchantID)
+      await AsyncStorage.setItem('merchant', merchantID.apiKey)
+      navigate('Invoice')
     } catch (e) {
       throw new Error('error saving merchant');
     }
