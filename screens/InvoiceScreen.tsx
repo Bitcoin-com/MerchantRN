@@ -103,14 +103,13 @@ export default class InvoiceScreen extends React.Component<Props, State> {
 
     return (
       <Container>
-        <View>
-          <BchInput
-            companyName={companyName}
-            markValid={this.markValid}
-            markInvalid={this.markInvalid}
-            updateBip70Payload={this.updateBip70Payload}
-          />
-        </View>
+
+        <BchInput
+          companyName={companyName}
+          markValid={this.markValid}
+          markInvalid={this.markInvalid}
+          updateBip70Payload={this.updateBip70Payload}
+        />
 
 
       </Container>
