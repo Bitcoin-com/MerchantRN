@@ -301,7 +301,8 @@ const Container = styled.View`
 
 const CompanyNameText = styled.Text`
   text-align:center;
-  font-weight: 700;
+  font-weight: 100;
+  font-size: ${wp('3%')};
   color: ${defaultTheme};
   margin-top:${hp('2%')};
 `;

@@ -29,7 +29,6 @@ export class Display extends React.Component<Props, State> {
     return (
       <InputDisplayText>
         {stringValue}
-        {/* <p>{currency}</p> */}
       </InputDisplayText>
     );
   }
@@ -37,6 +36,8 @@ export class Display extends React.Component<Props, State> {
 
 const InputDisplayText = styled.Text`
   text-align:center;
-  font-weight: 700;
+  font-weight: 100;
   color: ${defaultTheme};
+  font-size: ${wp('10%')};
+  margin: ${wp('5%')}px ${wp('6%')}px;
 `;

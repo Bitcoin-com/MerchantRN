@@ -83,7 +83,7 @@ const NumberInput = styled.TouchableOpacity`
 
 
 const NumberText = styled.Text`
-  font-weight: 700;
+  font-weight: 100;
   text-align:center;
   width: ${wp('30%')};
   color: ${defaultTheme};
