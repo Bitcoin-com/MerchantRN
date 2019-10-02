@@ -70,7 +70,7 @@ const Container = styled.View`
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top:${hp('5%')};
+  margin-top:${hp('2%')};
 `;
 
 
@@ -85,7 +85,7 @@ const NumberInput = styled.TouchableOpacity`
 const NumberText = styled.Text`
   font-weight: 100;
   text-align:center;
-  width: ${wp('30%')};
+  font-size: ${wp('5%')};
   color: ${defaultTheme};
 `;
 

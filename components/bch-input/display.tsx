@@ -36,8 +36,8 @@ export class Display extends React.Component<Props, State> {
 
 const InputDisplayText = styled.Text`
   text-align:center;
-  font-weight: 100;
+  font-weight: 700;
   color: ${defaultTheme};
   font-size: ${wp('10%')};
-  margin: ${wp('5%')}px ${wp('6%')}px;
+  margin: ${wp('3%')}px ${wp('5%')}px;
 `;
