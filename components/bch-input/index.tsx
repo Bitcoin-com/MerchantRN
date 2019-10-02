@@ -280,13 +280,11 @@ export default class BchInput extends React.Component<Props, State> {
           handleDecimal={this.handleDecimal}
         />
 
-        {/*
-
         <Payment
           addSelection={this.addSelection}
           selectedPaymentType={selectedPaymentType}
           constructBip70Payload={this.constructBip70Payload}
-        /> */}
+        />
       </Container>
     );
   }

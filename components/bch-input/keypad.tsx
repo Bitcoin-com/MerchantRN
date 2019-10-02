@@ -75,7 +75,6 @@ const Container = styled.View`
 
 
 const NumberInput = styled.TouchableOpacity`
-
   width: ${wp('30%')};
   margin-top:${hp('5%')};
 `;
