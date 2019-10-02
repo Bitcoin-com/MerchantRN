@@ -64,35 +64,30 @@ export default class BchInput extends React.Component<Props, State> {
   };
 
   getFiatDecimalPlaces = () => {
+    // hardcode USD
+
     const { currency } = this.state;
-
-    // const currencyString = new Intl.NumberFormat(deviceLanguage, {
-    //   style: "currency",
-    //   currency: currency
-    // }).formatToParts(1);
-
-    const length = currencyString[3].value.length;
-    return length;
+    return 2;
   };
 
   setStringValue = () => {
     const { currency, floatVal, bigNumber } = this.state;
 
     const length: number = this.getFiatDecimalPlaces();
-    // const big = new BigNumber(floatVal);
-    // const fixed: any = big.toFixed(length);
+    const big = new BigNumber(floatVal);
+    const fixed: any = big.toFixed(length);
 
-    // const currencyString = new Intl.NumberFormat(deviceLanguage, {
-    //   style: "currency",
-    //   currency: currency
-    // }).format(fixed);
+    const locale = deviceLanguage.replace("_", "-");
 
-    // this.setState({ stringValue: currencyString });
+    const currencyString = new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: currency
+    }).format(fixed);
+
+    this.setState({ stringValue: currencyString });
   };
 
   updateInput = async (val: number) => {
-    console.log('in here', val);
-
     await this.updateIntVal(val);
     await this.setStringValue();
     this.checkValid();
